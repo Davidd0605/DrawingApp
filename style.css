@@ -5,6 +5,22 @@ body{
     justify-content: center;
     align-items: center;
 }
+.buttons
+{
+    border-style:dotted;
+    border-color: white;
+    border-radius: 5px;
+    border-width: 4px;
+    background-color: aliceblue;
+    transition: background-color .5s, transform .5s;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.buttons:hover{
+    transform: rotate(15deg);
+    transition: background-color .5s, transform .5s;
+    background-color: grey;
+}
 #header
 {
     justify-content: center;
@@ -22,7 +38,7 @@ body{
     gap:2px;
     --size: 3;
     grid-template-columns: repeat(var(--size), 1fr) ;
-    grid-template-rows: repeat(var(--size),1fr);
+    grid-template-rows: repeat(var(--size), 1fr);
     margin: 10px;
     width: 800px;
     height: 800px;
