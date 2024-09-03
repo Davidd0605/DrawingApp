@@ -4,6 +4,7 @@ let sizeEdit = document.getElementById("gridSize")
 let resetBtn = document.getElementById("reset")
 let container = document.getElementById("container")
 let color = "white"
+let Me = Ryan_Gosling;
 function populate()
 {
     let i = 0;
