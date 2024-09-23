@@ -15,22 +15,25 @@ bucketButton.onclick = () => {bucketOn = !bucketOn
     else
         bucketButton.style.setProperty("background-color", "green")
 };
-function colorNeighbour( cell, i , j , array, color, initialColor ) {
+//colorNeighbour(my2DArray[i][j], i , j , my2DArray, color, my2DArray[i][j].style.getPropertyValue("background-color"));
+function colorNeighbour( i, j , array, color, initialColor, size) {
     // neighbours : i - 1 j, i + 1 j, i j-1 , i j+1;
     // stop calling other neighbours when : all neghbour colors are different or
     // no other neighbours exist lol FIX THIS SHIT MAN
-    cell.style.setProperty("background-color", color );
+    if(i == size || i < 0 || j == size || j < 0)
+        return;
+    array[i][j].style.setProperty("background-color", color );
     if(i > 0 /*&& array[i-1][j].getPropertyValue("background-color") == initialColor */) {
-        colorNeighbour(array[i - 1][j], i - 1, j, array, color, initialColor);
+        colorNeighbour( i - 1, j, array, color, initialColor);
     }
     if(i < size - 1 /* && array[i+1][j].getPropertyValue("background-color") == initialColor */) {
-        colorNeighbour(array[i + 1][j], i + 1, j, array, color, initialColor);
+        colorNeighbour( i + 1, j, array, color, initialColor);
     }
     if(j > 0 /*&& array[i][j-1].getPropertyValue("background-color") == initialColor*/) {
-        colorNeighbour(array[i - 1][j], i , j - 1, array, color, initialColor);
+        colorNeighbour( i , j - 1, array, color, initialColor);
     }
     if( j < size - 1 /* && array[i][j+1].getPropertyValue("background-color") == initialColor */) {
-        colorNeighbour(array[i - 1][j], i , j + 1, array, color, initialColor);
+        colorNeighbour( i , j + 1, array, color, initialColor);
     }
     return;
 }
@@ -55,7 +58,7 @@ function populate()
             my2DArray[i][j].addEventListener("click", function(){
                 my2DArray[i][j].style.setProperty("background-color", color)
                 if(bucketOn) {
-                    colorNeighbour(my2DArray[i][j], i , j , my2DArray, color, my2DArray[i][j].style.getPropertyValue("background-color"));
+                    colorNeighbour( i , j , my2DArray, color, my2DArray[i][j].style.getPropertyValue("background-color"), rows);
                 }
             })
 
