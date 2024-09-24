@@ -20,22 +20,24 @@ function colorNeighbour( i, j , array, color, initialColor, size) {
     // neighbours : i - 1 j, i + 1 j, i j-1 , i j+1;
     // stop calling other neighbours when : all neghbour colors are different or
     // no other neighbours exist lol FIX THIS SHIT MAN
-    if(i == size || i < 0 || j == size || j < 0)
+
+    console.log(i - 1, j, "| |", i + 1 , j, "| |", i , j-1, "| |" , i , j+1)
+    if(i == -1 || j == -1 || i == size || j == size)
         return;
-    array[i][j].style.setProperty("background-color", color );
-    if(i > 0 /*&& array[i-1][j].getPropertyValue("background-color") == initialColor */) {
-        colorNeighbour( i - 1, j, array, color, initialColor);
-    }
-    if(i < size - 1 /* && array[i+1][j].getPropertyValue("background-color") == initialColor */) {
-        colorNeighbour( i + 1, j, array, color, initialColor);
-    }
-    if(j > 0 /*&& array[i][j-1].getPropertyValue("background-color") == initialColor*/) {
-        colorNeighbour( i , j - 1, array, color, initialColor);
-    }
-    if( j < size - 1 /* && array[i][j+1].getPropertyValue("background-color") == initialColor */) {
-        colorNeighbour( i , j + 1, array, color, initialColor);
-    }
-    return;
+    array[i][j].style.setProperty("background-color", color);
+        if(array[i-1][j].style.getPropertyValue("background-color") == initialColor)
+            console.log("going up")
+            colorNeighbour( i - 1, j, array, color, initialColor,size);
+
+        if(array[i+1][j].style.getPropertyValue("background-color") == initialColor)
+            console.log("going down")
+            colorNeighbour( i + 1, j, array, color, initialColor,size);
+        if(array[i][j-1].style.getPropertyValue("background-color") == initialColor)
+            console.log("going left")
+            colorNeighbour( i , j - 1, array, color, initialColor,size);
+        if(array[i][j+1].style.getPropertyValue("background-color") == initialColor)
+            console.log("going left")
+            colorNeighbour( i , j + 1, array, color, initialColor,size);
 }
 function populate()
 {
